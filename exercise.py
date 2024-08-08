@@ -166,18 +166,29 @@ weather_advice();
 # - Ensure to validate input formats and handle unexpected inputs gracefully.
 
 def determine_season():
-    # Your control flow logic goes here
-    month = input("Please Enter the month from (January- December) : ")
-    day=input("Please enter the day(Monday-Sunday)")
-    if month in ['January', 'February']:
+    month = input("Please enter the month (Jan - Dec): ")
+    day = int(input("Please enter the day of the month: "))
+
+    if month in ['Dec', 'Jan', 'Feb']:
         season = 'Winter'
-    elif month in ['March', 'April', 'May']:
+    elif month in ['Mar', 'Apr', 'May']:
         season = 'Spring'
-    elif month in ['June', 'July', 'August']:
+    elif month in ['Jun', 'Jul', 'Aug']:
         season = 'Summer'
     else:
         season = 'Fall'
+
+    if (month == 'Dec' and day >= 21) or (month == 'Mar' and day <= 19):
+        season = 'Winter'
+    elif (month == 'Mar' and day >= 20) or (month == 'Jun' and day <= 20):
+        season = 'Spring'
+    elif (month == 'Jun' and day >= 21) or (month == 'Sep' and day <= 21):
+        season = 'Summer'
+    elif (month == 'Sep' and day >= 22) or (month == 'Dec' and day <= 20):
+        season = 'Fall'
+
     print(f"{month} {day} is in {season}.")
+
 determine_season()
 
 
